@@ -63,7 +63,7 @@ def detect_anomalies_iqr(df, column='size_bytes'):
 
 def plot_file_types(df, out_dir):
     plt.figure(figsize=(10, 6))
-    df['extension'].value_counts().head(10).plot(kind='bar')
+    plt.hist(df['extension'].value_counts())
     plt.title('Distribucija fajlova prema tipu')
     plt.xlabel('Ekstenzija')
     plt.ylabel('Broj fajlova')
@@ -73,14 +73,25 @@ def plot_file_types(df, out_dir):
 
 
 def plot_file_sizes(df, out_dir):
+    sizes = df['size_bytes']
+
     plt.figure(figsize=(10, 6))
-    plt.hist(df['size_bytes'], bins=50)
+
+    bins = np.logspace(
+        np.log10(sizes.min()),
+        np.log10(sizes.max()),
+        50
+    )
+
+    plt.hist(sizes, bins=bins)
     plt.xscale('log')
-    plt.title('Distribucija veličine fajlova (log skala)')
-    plt.xlabel('Veličina fajla (B)')
+
+    plt.xlabel('Veličina fajla (B) – log skala')
     plt.ylabel('Broj fajlova')
+    plt.title('Distribucija veličine fajlova')
+
     plt.tight_layout()
-    plt.savefig(Path(out_dir) / 'file_sizes.png')
+    plt.savefig(Path(out_dir) / 'file_sizes.png', dpi=200)
     plt.close()
 
 
@@ -97,6 +108,18 @@ def plot_modification_time(df, out_dir):
     plt.savefig(Path(out_dir) / 'file_modifications_over_time.png')
     plt.close()
 
+
+def plot_file_sizes_interactive(df, out_dir):
+    fig = px.histogram(
+        df,
+        x='size_bytes',
+        nbins=50,
+        log_x=True,
+        title='Distribucija veličine fajlova (log skala)',
+        labels={'size_bytes': 'Veličina fajla (B)'}
+    )
+
+    fig.write_html(f"{out_dir}/file_sizes.html")
 
 def plot_calendar_heatmap(df, out_dir):
     df['date'] = df['modified'].dt.date
@@ -120,6 +143,7 @@ def plot_distributions(df, out_dir):
     plot_file_sizes(df, out_dir)
     plot_modification_time(df, out_dir)
     plot_calendar_heatmap(df, out_dir)
+    plot_file_sizes_interactive(df,out_dir)
 
 
 # --------------------------------------------------
@@ -137,6 +161,12 @@ def main():
     parser.add_argument('--include-hidden', action='store_true', help='Uključi skrivene fajlove')
 
     args = parser.parse_args()
+
+    print(args.path)
+    print(args.out_dir)
+    print(args.visualize)
+    print(args.detect_iqr)
+    print(args.include_hidden)
 
     df = scan_directory(args.path, include_hidden=args.include_hidden)
     print(f'Pronađeno {len(df)} fajlova.')
