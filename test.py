@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """file_metadata_analyzer.py
 
 Alat za analizu i vizualizaciju metapodataka fajlova u fajl sistemu.
@@ -19,7 +18,7 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.express as px
+import seaborn as sns
 
 try:
     from sklearn.ensemble import IsolationForest
@@ -75,15 +74,13 @@ def detect_anomalies_iqr(df, column='size_bytes'):
 def detect_anomalies(df, out_dir):
     mean_size = df['size_bytes'].mean()
     std_size = df['size_bytes'].std()
-    threshold = mean_size + 2*std_size  # fajlovi > 2 std od proseka
+    threshold = mean_size + 2*std_size  
 
     plt.figure(figsize=(8,5))
-    # Svi fajlovi
     plt.scatter(df['name'], df['size_bytes'], color='blue')
-    # Anomalije
     plt.scatter(
         df[df['size_bytes'] > threshold]['name'],
-        df[df['size_bytes'] > threshold]['size_bytes'],  # ispravljeno ovde
+        df[df['size_bytes'] > threshold]['size_bytes'],  
         color='red',
         label='Anomalije'
     )
@@ -96,61 +93,274 @@ def detect_anomalies(df, out_dir):
 
     
 
+def plot_file_sizes(df, out_dir):
+    """Analiza veličine fajlova: histogram + pie chart + tabela statistika"""
 
-#def plot_distributions(df, out_dir):
-    # Path(out_dir).mkdir(parents=True, exist_ok=True)
-    # # Distribucija po tipu
-    # plt.figure(figsize=(10,6))
-    # df['extension'].value_counts().head(20).plot(kind='bar')
-    # plt.title('Top 20 fajl ekstenzija')
-    # plt.savefig(Path(out_dir)/'type_distribution.png')
-    # plt.close()
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from matplotlib.gridspec import GridSpec
 
-    # # Histogram veličine
-    # plt.figure(figsize=(10,6))
-    # plt.hist(np.log1p(df['size_bytes']), bins=50)
-    # plt.title('Histogram veličine fajlova (log scale)')
-    # plt.savefig(Path(out_dir)/'size_histogram.png')
-    # plt.close()
+    # Stil
+    sns.set_style("whitegrid")
 
-    # # Boxplot
-    # plt.figure(figsize=(8,4))
-    # plt.boxplot(df['size_bytes'], vert=False)
-    # plt.title('Boxplot veličine fajlova')
-    # plt.savefig(Path(out_dir)/'size_boxplot.png')
-    # plt.close()
+    # Figura + GridSpec (2 reda x 2 kolone)
+    fig = plt.figure(figsize=(16, 9))
+    gs = GridSpec(
+        2, 2,
+        height_ratios=[3, 1],   
+        width_ratios=[1, 1],
+        hspace=0.3,
+        wspace=0.2
+    )
 
-    # # Kalendarska heatmap (modifikacije po danu)
-    # df['mod_day'] = df['modified'].dt.date
-    # count_day = df.groupby('mod_day').size().reset_index(name='count')
-    # fig = px.bar(count_day, x='mod_day', y='count', title='Broj modifikacija po danu')
-    # fig.write_html(Path(out_dir)/'calendar_heatmap.html')
+    
+    ax1 = fig.add_subplot(gs[0, 0])   
+    ax2 = fig.add_subplot(gs[0, 1])   
+    table_ax = fig.add_subplot(gs[1, 1])  
+
+    n_bins = min(20, max(5, len(df) // 5))
+
+    sns.histplot(
+        data=df,
+        x='size_bytes',
+        bins=n_bins,
+        kde=True,
+        color='lightseagreen',
+        edgecolor='teal',
+        linewidth=1,
+        alpha=0.7,
+        ax=ax1
+    )
+
+    sns.kdeplot(
+        data=df,
+        x='size_bytes',
+        color='darkred',
+        linewidth=2,
+        ax=ax1
+    )
+
+    ax1.set_title(
+        f"Distribucija veličina fajlova (N={len(df)})",
+        fontsize=14, fontweight='bold', pad=15
+    )
+    ax1.set_xlabel("Veličina u bajtima", fontsize=11)
+    ax1.set_ylabel("Broj fajlova", fontsize=11)
+
+    stats = {
+        'mean': df['size_bytes'].mean(),
+        'median': df['size_bytes'].median(),
+        'q1': df['size_bytes'].quantile(0.25),
+        'q3': df['size_bytes'].quantile(0.75)
+    }
+
+    colors_line = {'mean': 'red', 'median': 'green', 'q1': 'blue', 'q3': 'orange'}
+    labels_line = {'mean': 'Prosek', 'median': 'Medijana', 'q1': 'Q1', 'q3': 'Q3'}
+
+    for stat, val in stats.items():
+        ax1.axvline(
+            val,
+            color=colors_line[stat],
+            linestyle='--',
+            linewidth=1.5,
+            alpha=0.7,
+            label=f"{labels_line[stat]}: {val:,.0f} B"
+        )
+
+    ax1.legend(loc='upper right')
+
+    # ================= PIE CHART =================
+    size_categories = pd.cut(
+        df['size_bytes'],
+        bins=[0, 1024, 10240, 102400, 1024000, float('inf')],
+        labels=['<1 KB', '1–10 KB', '10–100 KB', '100–1000 KB', '>1 MB']
+    )
+
+    size_counts = size_categories.value_counts().sort_index()
+    pie_colors = sns.color_palette("pastel", len(size_counts))
+
+    wedges, texts, autotexts = ax2.pie(
+        size_counts.values,
+        labels=size_counts.index,
+        colors=pie_colors,
+        autopct='%1.1f%%',
+        startangle=90,
+        textprops={'fontsize': 10},
+        wedgeprops={'edgecolor': 'white', 'linewidth': 2}
+    )
+
+    for autotext in autotexts:
+        autotext.set_color('black')
+        autotext.set_fontweight('bold')
+        autotext.set_fontsize(11)
+
+    ax2.set_title(
+        "Udeo fajlova po veličinskim kategorijama",
+        fontsize=14, fontweight='bold', pad=20
+    )
+
+    legend_labels = [
+        f'{label}: {size_counts[label]} fajlova'
+        for label in size_counts.index
+    ]
+
+    ax2.legend(
+        wedges,
+        legend_labels,
+        title="Kategorije",
+        loc="center left",
+        bbox_to_anchor=(1, 0.5),
+        fontsize=10
+    )
+
+    # ================= TABELA STATISTIKA =================
+    table_ax.axis("off")
+
+    table_data = [
+        ["Ukupno fajlova", f"{len(df):,}"],
+        ["Ukupna veličina (MB)", f"{df['size_bytes'].sum()/1024/1024:.2f}"],
+        ["Prosek (B)", f"{df['size_bytes'].mean():,.0f}"],
+        ["Medijana (B)", f"{df['size_bytes'].median():,.0f}"],
+        ["Std dev (B)", f"{df['size_bytes'].std():,.0f}"],
+        ["Min (B)", f"{df['size_bytes'].min():,.0f}"],
+        ["Max (B)", f"{df['size_bytes'].max():,.0f}"],
+    ]
+
+    stats_table = table_ax.table(
+        cellText=table_data,
+        colLabels=["Statistika", "Vrednost"],
+        cellLoc="left",
+        loc="center"
+    )
+
+    stats_table.auto_set_font_size(False)
+    stats_table.set_fontsize(10)
+    stats_table.scale(1, 1.5)
+
+    for (row, col), cell in stats_table.get_celld().items():
+        if row == 0:
+            cell.set_text_props(weight='bold')
+            cell.set_facecolor("#f2e5c4")
+
+    # ================= NASLOV + SAVE =================
+    plt.suptitle(
+        "ANALIZA VELIČINE FAJLOVA",
+        fontsize=18, fontweight='bold', y=0.98
+    )
+
+    if out_dir:
+        plt.savefig(
+            f"{out_dir}/file_size_analysis_complete.png",
+            dpi=150,
+            bbox_inches='tight'
+        )
+
+    plt.show()
+
+
 
 def plot_file_types(df, out_dir):
     print("Distribucija fajlova po tipu")
+    
     type_counts = df['extension'].value_counts()
     
-    plt.figure(figsize=(8,5))
-    type_counts.plot(kind='bar', color='skyblue', edgecolor='black')
-    plt.title("Distribucija fajlova po tipu")
-    plt.xlabel("Tip fajla")
-    plt.ylabel("Broj fajlova")
-    plt.xticks(rotation=45)
-    plt.tight_layout()
+    threshold = len(df) * 0.02  
+    small_categories = type_counts[type_counts < threshold]
+    
+    if len(small_categories) > 0:
+        other_count = small_categories.sum()
+        type_counts = type_counts[type_counts >= threshold]
+        type_counts['Ostalo'] = other_count
+    
+    total = len(df)
+    
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
+    
+ 
+    sns.barplot(x=type_counts.index, y=type_counts.values,
+                hue=type_counts.index,  
+                palette="Set2", 
+                legend=False,  
+                ax=ax1)
+    
+    ax1.set_title("Bar Chart - Distribucija po tipu", fontsize=14, fontweight='bold')
+    ax1.set_xlabel("Tip fajla", fontsize=11)
+    ax1.set_ylabel("Broj fajlova", fontsize=11)
+    
+    
+    ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
+    
+    
+    for i, v in enumerate(type_counts.values):
+        percentage = v/total*100
+        ax1.text(i, v + max(type_counts.values)*0.02,
+                f"{v}\n({percentage:.1f}%)", 
+                ha='center', va='bottom',
+                fontsize=9, fontweight='bold')
+    
+    # Dodaj horizontalnu liniju za prosek
+    avg_count = total / len(type_counts)
+    ax1.axhline(y=avg_count, color='red', linestyle='--', 
+                alpha=0.7, linewidth=1.5, label=f'Prosek: {avg_count:.1f}')
+    ax1.legend(loc='upper right')
+    
+    # ============= PLOT 2: PIE CHART =============
+    colors = sns.color_palette("Set3", len(type_counts))
+    wedges, texts, autotexts = ax2.pie(type_counts.values, 
+                                       labels=type_counts.index,
+                                       colors=colors,
+                                       autopct='%1.1f%%',
+                                       startangle=90,
+                                       textprops={'fontsize': 10})
+    
+    
+    for autotext in autotexts:
+        autotext.set_color('black')
+        autotext.set_fontweight('bold')
+        autotext.set_fontsize(11)
+    
+    ax2.set_title("Pie Chart - Udeo po tipu", fontsize=14, fontweight='bold')
+    
+   
+    legend_labels = [f'{label}: {type_counts[label]} ({type_counts[label]/total*100:.1f}%)' 
+                    for label in type_counts.index]
+    ax2.legend(wedges, legend_labels, 
+               title="Tipovi fajlova",
+               loc="center left",
+               bbox_to_anchor=(1, 0, 0.5, 1),
+               fontsize=9)
+    
+    # ============= STATISTIKA ISPOD PIE CHARTA =============
+    
+    # Napravi tekst sa statistikama
+    textstr = f"""Statistike tipova fajlova:
+    {'='*40}
+    Ukupno fajlova: {total:,}
+    Različitih tipova: {len(type_counts)}"""
+
+    
+    
+    # Dodaj tekst ispod pie charta
+    fig.text(0.75, 0.18, textstr, fontsize=9,
+             ha='center',  
+             va='top',     
+             bbox=dict(boxstyle="round", facecolor="lightblue", alpha=0.8,
+                      edgecolor='navy', linewidth=1.5))
+    
+   
+    plt.suptitle(f"DISTRIBUCIJA FAJLOVA PO TIPU", 
+                 fontsize=18, fontweight='bold', y=0.98)
+    
+   
+    plt.tight_layout(rect=[0, 0.1, 1, 0.95])
+    if out_dir:
+        plt.savefig(f"{out_dir}/file_types_distribution.png", 
+                   dpi=150, bbox_inches='tight')
+    
     plt.show()
-
-
-  
-
-def plot_file_sizes(df, out_dir):
-    # Distribucija po veličini fajla (histogram)
-    plt.figure(figsize=(8,5))
-    plt.hist(df['size_bytes'], bins=10, color='salmon', edgecolor='black')
-    plt.title("Distribucija fajlova po veličini")
-    plt.xlabel("Veličina fajla (Bajti)")
-    plt.ylabel("Broj fajlova")
-    plt.show()
-
+    
 
 def plot_modification_time(df, out_dir):
     df['modified_month'] = df['modified'].dt.to_period('M')
@@ -167,63 +377,62 @@ def plot_modification_time(df, out_dir):
     plt.savefig(Path(out_dir) / 'file_modifications_over_time.png')
     plt.close()
 
+def plot_github_style_calendar(df, out_dir, date_col='accessed'):
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from pathlib import Path
 
-import plotly.express as px
+    df[date_col] = pd.to_datetime(df[date_col])
 
-# def plot_calendar_heatmap(df, out_dir):
-#     df['date'] = df['modified'].dt.date
-#     daily = df.groupby('date').size().reset_index(name='count')
+    # Broj pristupa po danu
+    daily = (
+        df.groupby(df[date_col].dt.date)
+          .size()
+          .rename("count")
+          .reset_index()
+          .rename(columns={date_col: "date"})
+    )
 
-#     fig = px.density_heatmap(
-#         daily,
-#         x='date',
-#         y=['activity'],
-#         z='count',
-#         title='Kalendarska vizualizacija aktivnosti fajlova'
-#     )
+    daily['date'] = pd.to_datetime(daily['date'])
 
-#     fig.write_html(Path(out_dir) / 'calendar_activity.html')
+    # Popuni sve dane
+    all_days = pd.date_range(daily['date'].min(), daily['date'].max(), freq='D')
+    daily = daily.set_index('date').reindex(all_days, fill_value=0)
+    daily.index.name = 'date'
+    daily.reset_index(inplace=True)
 
-
-def plot_calendar_heatmap(df, out_dir):
-    # Pretvori u datetime
-    print("Uso sam u calendar heatmap")
-    df['created'] = pd.to_datetime(df['created'])
-
-    # Min i max datum
-    min_date = df['created'].min().date()
-    max_date = df['created'].max().date()
     
-    # Kreiraj DataFrame sa brojem fajlova po danu
-    daily_counts = df.groupby(df['created'].dt.date).size().reset_index(name='count')
+    daily['weekday'] = daily['date'].dt.weekday      
+    daily['week'] = (
+        daily['date'] - pd.to_timedelta(daily['weekday'], unit='D')
+    ).dt.isocalendar().week
 
-    # Popuni sve datume između min i max
-    all_dates = pd.date_range(start=min_date, end=max_date, freq='D')
-    daily_counts = daily_counts.set_index('created').reindex(all_dates, fill_value=0)
-    daily_counts.index.name = 'date'
-    daily_counts.reset_index(inplace=True)
+   
+    heatmap = daily.pivot(index='weekday', columns='week', values='count')
 
-    # Napravi matricu za plot (red = sedmica, kolona = dan)
-    daily_counts['week'] = daily_counts['date'].dt.isocalendar().week
-    daily_counts['weekday'] = daily_counts['date'].dt.weekday  # Mon=0 ... Sun=6
+    plt.figure(figsize=(18, 4))
+    im = plt.imshow(heatmap, aspect='auto', cmap='Greens')
 
-    # Pivot tabela: red = weekday, kolona = week
-    heatmap_data = daily_counts.pivot(index='weekday', columns='week', values='count')
+    # Y ose: dani u nedelji
+    plt.yticks(
+        ticks=np.arange(7),
+        labels=['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    )
 
-    plt.figure(figsize=(20,4))
-    im = plt.imshow(heatmap_data, aspect='auto', cmap='YlOrRd', origin='lower')
+    plt.xlabel('Weeks')
+    plt.title('GitHub-style calendar heatmap – pristup fajlovima')
 
-    # X i Y ticks
-    plt.yticks(ticks=np.arange(7), labels=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'])
-    plt.xticks(ticks=np.arange(0, heatmap_data.shape[1], 4))  # svaka 4. nedelja
-    plt.xlabel(f'Nedelje od {min_date} do {max_date}')
-    plt.colorbar(im, label='Broj fajlova')
-    plt.title('Kalendarska heatmap po danima')
+    cbar = plt.colorbar(im)
+    cbar.set_label('Broj pristupa')
 
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     plt.tight_layout()
-    plt.savefig(Path(out_dir)/'calendar_heatmap_dynamic.png', dpi=200)
+    plt.savefig(Path(out_dir) / 'github_calendar_heatmap.png', dpi=200)
     plt.close()
+
+
+    
 
 def main():
     parser = argparse.ArgumentParser(description='Alat za analizu i vizualizaciju metapodataka fajlova')
@@ -239,7 +448,9 @@ def main():
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    df.to_csv(out_dir/'metadata.csv', index=False)
+    output_file = out_dir / 'metadata.csv'
+    df.to_csv(output_file, index=False, encoding='utf-8', date_format='%Y-%m-%d %H:%M:%S')
+
 
     print(f'Metapodaci sačuvani u {args.out_dir}/metadata.csv')
 
@@ -249,12 +460,11 @@ def main():
         print(f'Detekovano {len(anomalies)} anomalija. Sačuvano u anomalies.csv')
 
     if args.visualize:
-        #plot_distributions(df, args.out_dir)
         print("visualize je true")
         plot_file_types(df, args.out_dir)
         plot_file_sizes(df, args.out_dir)
         plot_modification_time(df, args.out_dir)
-        # plot_calendar_heatmap(df,args.out_dir)
+        plot_github_style_calendar(df,args.out_dir)
         # detect_anomalies(df, args.out_dir)
         print(f'Grafički prikazi sačuvani u {args.out_dir}/')
 
