@@ -259,6 +259,102 @@ def plot_file_sizes(df, out_dir):
     plt.show()
 
 
+def plot_file_sizes1(df, out_dir):
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from matplotlib.gridspec import GridSpec
+
+    # ================= PRIPREMA PODATAKA =================
+    bins = [0, 1024, 10_240, 102_400, 1_024_000, float('inf')]
+    labels = ['<1 KB', '1–10 KB', '10–100 KB', '100 KB–1 MB', '>1 MB']
+
+    df['size_category'] = pd.cut(df['size_bytes'], bins=bins, labels=labels)
+    category_counts = df['size_category'].value_counts().sort_index()
+
+    avg_size = df['size_bytes'].mean()
+
+    # ================= FIGURA =================
+    fig = plt.figure(figsize=(16, 9))
+    gs = GridSpec(2, 2, height_ratios=[3, 1], hspace=0.35, wspace=0.25)
+
+    ax_bar = fig.add_subplot(gs[0, 0])
+    ax_pie = fig.add_subplot(gs[0, 1])
+    ax_table = fig.add_subplot(gs[1, 1])
+
+    # ================= BAR CHART + PROSEK =================
+    ax_bar.bar(
+        category_counts.index,
+        category_counts.values,
+        color='#8ecae6',
+        edgecolor='black'
+    )
+
+    for i, count in enumerate(category_counts.values):
+        ax_bar.text(
+            i,              
+            count + 1,      
+            str(count),     
+            ha='center',    
+            va='bottom',    
+            fontsize=10,
+            fontweight='bold'
+        )    
+
+    ax_bar.set_title("Raspodela fajlova po veličinskim kategorijama", fontsize=14, fontweight='bold')
+    ax_bar.set_xlabel("Kategorija veličine")
+    ax_bar.set_ylabel("Broj fajlova")
+    ax_bar.legend()
+
+    # ================= PIE CHART =================
+    ax_pie.pie(
+        category_counts.values,
+        labels=category_counts.index,
+        autopct='%1.1f%%',
+        startangle=90,
+        wedgeprops={'edgecolor': 'white'}
+    )
+
+    ax_pie.set_title("Procentualni udeo fajlova po veličini", fontsize=14, fontweight='bold')
+
+    # ================= TABELA STATISTIKA =================
+    ax_table.axis("off")
+
+    table_data = [
+        ["Ukupno fajlova", f"{len(df)}"],
+        ["Ukupna veličina (MB)", f"{df['size_bytes'].sum() / 1024 / 1024:.2f}"],
+        ["Prosečna veličina (KB)", f"{avg_size / 1024:.2f}"],
+        ["Minimalna veličina (B)", f"{df['size_bytes'].min():,}"],
+        ["Maksimalna veličina (MB)", f"{df['size_bytes'].max() / 1024 / 1024:.2f}"]
+    ]
+
+    table = ax_table.table(
+        cellText=table_data,
+        colLabels=["Metod", "Vrednost"],
+        cellLoc="left",
+        loc="center"
+    )
+
+    table.auto_set_font_size(False)
+    table.set_fontsize(11)
+    table.scale(1, 1.6)
+
+    # ================= NASLOV + SAVE =================
+    plt.suptitle(
+        "ANALIZA VELIČINE FAJLOVA",
+        fontsize=18,
+        fontweight='bold',
+        y=0.98
+    )
+
+    if out_dir:
+        plt.savefig(
+            f"{out_dir}/file_size_overview.png",
+            dpi=200,
+            bbox_inches='tight'
+        )
+
+    plt.show()
+
 
 def plot_file_types(df, out_dir):
     print("Distribucija fajlova po tipu")
@@ -462,10 +558,10 @@ def main():
     if args.visualize:
         print("visualize je true")
         plot_file_types(df, args.out_dir)
-        plot_file_sizes(df, args.out_dir)
+        plot_file_sizes1(df, args.out_dir)
         plot_modification_time(df, args.out_dir)
         plot_github_style_calendar(df,args.out_dir)
-        # detect_anomalies(df, args.out_dir)
+        detect_anomalies(df, args.out_dir)
         print(f'Grafički prikazi sačuvani u {args.out_dir}/')
 
 if __name__ == '__main__':
