@@ -1,0 +1,171 @@
+path,name,extension,size_bytes,created,modified,accessed
+C:\FAX\MASTER\Digitalna forenzika\Seminarski rad.docx,Seminarski rad.docx,docx,959858,2025-12-20 15:37:06,2025-12-22 23:47:36,2025-12-24 22:23:41
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\aktivnost_po_danima.png,aktivnost_po_danima.png,png,108374,2025-12-21 16:41:55,2025-12-21 17:07:14,2025-12-22 01:15:09
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\daily_accesses.csv,daily_accesses.csv,csv,2996,2025-12-24 19:39:26,2025-12-24 22:24:55,2025-12-24 22:24:55
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\metadata.csv,metadata.csv,csv,117703,2025-12-21 20:07:32,2025-12-21 20:20:55,2025-12-24 21:18:47
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\package-lock.json,package-lock.json,json,102,2025-12-20 14:45:46,2025-12-20 14:45:46,2025-12-24 18:53:55
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\petar.py,petar.py,py,6128,2025-12-21 16:26:29,2025-12-24 19:59:33,2025-12-24 22:21:53
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\README.md,README.md,md,19,2025-12-15 02:15:34,2025-12-15 02:15:34,2025-12-15 02:16:01
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\test.py,test.py,py,26868,2025-12-20 14:45:46,2025-12-24 22:25:46,2025-12-24 22:25:48
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\test.txt,test.txt,txt,15,2025-12-15 02:15:44,2025-12-15 02:19:04,2025-12-22 22:34:30
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\24122025\anomalies.csv,anomalies.csv,csv,5962,2025-12-24 19:38:12,2025-12-24 22:24:53,2025-12-24 22:24:53
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\24122025\calendar_calplot.png,calendar_calplot.png,png,63241,2025-12-24 22:16:09,2025-12-24 22:24:56,2025-12-24 22:24:56
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\24122025\file_types_distribution.png,file_types_distribution.png,png,218235,2025-12-24 22:17:54,2025-12-24 22:24:54,2025-12-24 22:24:54
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\24122025\metadata.csv,metadata.csv,csv,32320,2025-12-24 19:38:12,2025-12-24 22:24:53,2025-12-24 22:24:55
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\OsnovnePodaci\metadata.csv,metadata.csv,csv,117703,2025-12-24 18:33:53,2025-12-24 18:33:53,2025-12-24 18:33:53
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\OsnovnePodaci1234\anomalies.csv,anomalies.csv,csv,15529,2025-12-21 20:19:40,2025-12-22 23:22:07,2025-12-23 00:03:36
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\OsnovnePodaci1234\file_modifications_over_time.png,file_modifications_over_time.png,png,26749,2025-12-21 20:19:45,2025-12-22 23:22:18,2025-12-23 00:03:38
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\OsnovnePodaci1234\file_size_analysis_complete.png,file_size_analysis_complete.png,png,193222,2025-12-21 20:19:43,2025-12-22 00:48:53,2025-12-22 23:25:38
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\OsnovnePodaci1234\file_size_overview.png,file_size_overview.png,png,199841,2025-12-22 22:39:31,2025-12-22 23:22:10,2025-12-23 00:03:38
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\OsnovnePodaci1234\file_types_distribution.png,file_types_distribution.png,png,173471,2025-12-21 20:19:41,2025-12-22 23:22:08,2025-12-23 00:03:36
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\OsnovnePodaci1234\github_calendar_heatmap.png,github_calendar_heatmap.png,png,59967,2025-12-21 20:19:45,2025-12-22 23:22:19,2025-12-23 00:03:38
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\OsnovnePodaci1234\metadata.csv,metadata.csv,csv,106888,2025-12-21 20:23:46,2025-12-22 23:22:07,2025-12-24 18:30:40
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\outputs\github_calendar_2025.png,github_calendar_2025.png,png,59140,2025-12-24 18:29:26,2025-12-24 18:29:26,2025-12-24 22:25:48
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\Petar\anomalies.csv,anomalies.csv,csv,2814935,2025-12-24 18:29:26,2025-12-24 18:29:26,2025-12-24 22:25:48
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\Petar\file_modifications_over_time.png,file_modifications_over_time.png,png,20241,2025-12-24 18:29:26,2025-12-24 18:29:26,2025-12-24 22:25:48
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\Petar\file_size_overview.png,file_size_overview.png,png,178869,2025-12-24 18:29:26,2025-12-24 18:29:26,2025-12-24 22:25:48
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\Petar\file_types_distribution.png,file_types_distribution.png,png,173340,2025-12-24 18:29:26,2025-12-24 18:29:26,2025-12-24 22:25:48
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\Petar\github_calendar_all_years.png,github_calendar_all_years.png,png,69710,2025-12-24 18:29:26,2025-12-24 22:08:24,2025-12-24 22:23:18
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\Petar\github_calendar_heatmap.png,github_calendar_heatmap.png,png,64631,2025-12-24 18:29:26,2025-12-24 18:29:26,2025-12-24 22:25:48
+C:\FAX\MASTER\Digitalna forenzika\Digital-forensics\Petar\metadata.csv,metadata.csv,csv,17799215,2025-12-24 18:29:26,2025-12-24 18:29:26,2025-12-24 22:25:48
+C:\FAX\MASTER\Digitalna forenzika\outputs\metadata.csv,metadata.csv,csv,30635,2025-12-11 00:24:26,2025-12-11 00:25:19,2025-12-20 14:41:19
+C:\FAX\MASTER\Interoperabilnost\api gateway.png,api gateway.png,png,187990,2025-09-29 16:26:09,2025-09-29 16:26:10,2025-12-24 22:16:29
+C:\FAX\MASTER\Interoperabilnost\choose-api2.png,choose-api2.png,png,11491,2025-09-29 20:38:56,2025-09-29 20:38:56,2025-12-24 22:23:43
+C:\FAX\MASTER\Interoperabilnost\Health data interoperability - updated - Đorđe Petkovic 1614[1].pdf,Health data interoperability - updated - Đorđe Petkovic 1614[1].pdf,pdf,408623,2025-09-21 17:32:06,2025-09-21 17:32:06,2025-10-09 22:02:04
+C:\FAX\MASTER\Interoperabilnost\Interoperabilnost final prez.pdf,Interoperabilnost final prez.pdf,pdf,2696137,2025-10-12 21:33:06,2025-10-12 21:33:07,2025-10-22 22:20:37
+C:\FAX\MASTER\Interoperabilnost\Interoperabilnost mikrosistema final.pdf,Interoperabilnost mikrosistema final.pdf,pdf,750621,2025-10-12 15:24:23,2025-10-12 15:24:24,2025-12-24 22:23:42
+C:\FAX\MASTER\Interoperabilnost\Interoperabilnost mikrosistema.pdf,Interoperabilnost mikrosistema.pdf,pdf,200925,2025-09-26 00:03:03,2025-09-26 00:03:04,2025-10-23 15:36:13
+C:\FAX\MASTER\Interoperabilnost\Interoperabilnost prezentacija1.pdf,Interoperabilnost prezentacija1.pdf,pdf,2694443,2025-10-22 23:15:45,2025-10-22 23:15:10,2025-10-23 15:36:00
+C:\FAX\MASTER\Interoperabilnost\Optimizacija upita u MongoDB.docx,Optimizacija upita u MongoDB.docx,docx,64683,2025-11-04 23:17:56,2025-11-04 23:17:56,2025-11-04 23:17:56
+C:\FAX\MASTER\Interoperabilnost\Perfektno 💪.txt,Perfektno 💪.txt,txt,5126,2025-10-14 00:03:07,2025-10-14 00:03:08,2025-10-15 21:28:34
+C:\FAX\MASTER\Interoperabilnost\Prezentacija.pdf,Prezentacija.pdf,pdf,3403091,2025-10-05 18:12:58,2025-10-05 18:12:59,2025-10-05 18:13:28
+C:\FAX\MASTER\Interoperabilnost\Sadrzaj.txt,Sadrzaj.txt,txt,1761,2025-09-22 20:33:52,2025-09-22 20:33:52,2025-12-24 19:37:47
+C:\FAX\MASTER\Interoperabilnost\sadrzaj2.txt,sadrzaj2.txt,txt,2047,2025-09-25 23:07:31,2025-09-25 23:07:37,2025-12-24 19:37:54
+C:\FAX\MASTER\Interoperabilnost\scalabillity.png,scalabillity.png,png,8912,2025-09-29 16:40:29,2025-09-29 16:40:30,2025-12-24 22:23:38
+C:\FAX\MASTER\Interoperabilnost\scaling.webp,scaling.webp,webp,7348,2025-09-29 16:37:58,2025-09-29 16:37:59,2025-12-24 21:22:25
+C:\FAX\MASTER\Interoperabilnost\Tekst koji ce da prati prez.md,Tekst koji ce da prati prez.md,md,6833,2025-10-12 23:58:14,2025-10-12 23:58:14,2025-10-14 00:02:38
+C:\FAX\MASTER\Interoperabilnost\Tekst koji ce da prati prez.txt,Tekst koji ce da prati prez.txt,txt,6464,2025-10-11 17:23:02,2025-10-11 17:42:48,2025-12-24 19:31:39
+C:\FAX\MASTER\Inzenjerstvo zahteva\Iz usmeno.md,Iz usmeno.md,md,21764,2025-08-04 22:10:38,2025-08-05 17:37:14,2025-11-29 14:23:53
+C:\FAX\MASTER\Inzenjerstvo zahteva\Petar Mančic 1906- Inženjerstvo zahteva.pdf,Petar Mančic 1906- Inženjerstvo zahteva.pdf,pdf,19638187,2025-08-04 22:10:10,2025-08-04 22:09:13,2025-10-23 15:33:20
+C:\FAX\MASTER\Inzenjerstvo zahteva\Petar Mančić- 1906- Opšti proces inženjerstva zahteva (A Generic Process for Requirements Engineering).docx,Petar Mančić- 1906- Opšti proces inženjerstva zahteva (A Generic Process for Requirements Engineering).docx,docx,1361295,2025-07-22 21:58:01,2025-08-04 22:45:01,2025-11-04 21:14:49
+C:\FAX\MASTER\Inzenjerstvo zahteva\Petar Mančić- 1906- Opšti proces inženjerstva zahteva (A Generic Process for Requirements Engineering).zip,Petar Mančić- 1906- Opšti proces inženjerstva zahteva (A Generic Process for Requirements Engineering).zip,zip,20710949,2025-08-04 22:47:45,2025-08-04 22:47:47,2025-08-04 22:47:50
+C:\FAX\MASTER\Inzenjerstvo zahteva\Tekst koji ce da prati prez.md,Tekst koji ce da prati prez.md,md,20615,2025-08-03 16:26:39,2025-08-03 20:42:11,2025-08-03 20:42:11
+C:\FAX\MASTER\Inzenjerstvo zahteva\Tekst koji ce da prati prez.txt,Tekst koji ce da prati prez.txt,txt,14437,2025-08-02 14:07:54,2025-08-03 16:21:26,2025-08-03 22:10:34
+C:\FAX\MASTER\Inzenjerstvo zahteva\White and Blue Professional Modern Technology Pitch Deck Presentation (3).pdf,White and Blue Professional Modern Technology Pitch Deck Presentation (3).pdf,pdf,21719692,2025-08-03 22:12:24,2025-08-03 20:26:36,2025-09-13 16:35:54
+C:\FAX\MASTER\Inzenjerstvo zahteva\materijal za odbranu projekta\dijagram poslovnih podataka.png,dijagram poslovnih podataka.png,png,420992,2025-10-20 00:36:54,2025-10-20 00:34:07,2025-11-04 21:14:42
+C:\FAX\MASTER\Inzenjerstvo zahteva\materijal za odbranu projekta\inz.zip,inz.zip,zip,2336605,2025-10-23 15:30:40,2025-10-23 15:30:40,2025-10-23 15:30:46
+C:\FAX\MASTER\Inzenjerstvo zahteva\materijal za odbranu projekta\model poslovnih  ciljeva.png,model poslovnih  ciljeva.png,png,2171036,2025-10-20 00:40:08,2025-10-19 20:20:16,2025-11-04 21:14:42
+C:\FAX\MASTER\Inzenjerstvo zahteva\materijal za odbranu projekta\Plan iterativnog razvoja.docx,Plan iterativnog razvoja.docx,docx,33746,2025-10-20 00:37:48,2025-10-18 12:09:34,2025-11-04 21:14:42
+C:\FAX\MASTER\Napredni-SWE\README.md,README.md,md,19596,2024-12-10 13:43:45,2025-06-01 15:25:42,2025-11-29 14:23:52
+C:\FAX\MASTER\Napredni-SWE\WebFlow presentation.pptx,WebFlow presentation.pptx,pptx,402493,2024-12-23 17:54:09,2025-06-02 21:20:05,2025-07-19 14:50:09
+C:\FAX\MASTER\Napredni-SWE\assets\Izgled sajta nakon logovanja.png,Izgled sajta nakon logovanja.png,png,259833,2024-12-16 21:12:31,2024-12-16 21:12:31,2025-05-27 07:37:46
+C:\FAX\MASTER\Napredni-SWE\assets\New Project.png,New Project.png,png,100768,2024-12-17 21:23:34,2024-12-17 21:23:34,2025-05-27 07:37:46
+C:\FAX\MASTER\Napredni-SWE\assets\preview.png,preview.png,png,44208,2024-12-17 23:55:30,2024-12-17 23:55:30,2025-06-01 15:25:05
+C:\FAX\MASTER\Napredni-SWE\assets\publish.png,publish.png,png,94002,2024-12-18 00:25:47,2024-12-18 00:25:47,2025-05-27 07:37:45
+C:\FAX\MASTER\Napredni-SWE\assets\Submit form.png,Submit form.png,png,59325,2025-06-01 15:21:49,2025-06-01 15:21:50,2025-07-19 14:50:08
+C:\FAX\MASTER\Napredni-SWE\assets\WebFlowOfficialSite.png,WebFlowOfficialSite.png,png,369129,2024-12-16 20:52:23,2024-12-16 20:52:24,2025-05-27 07:37:46
+C:\FAX\MASTER\Napredni-SWE\assets\Zapier.png,Zapier.png,png,70840,2025-06-01 15:34:26,2025-06-01 15:34:26,2025-07-19 14:50:08
+C:\FAX\MASTER\Sistemi baze\nacini optimizacije upita.txt,nacini optimizacije upita.txt,txt,1654,2025-11-03 21:54:33,2025-11-03 21:54:33,2025-12-05 22:24:42
+C:\FAX\MASTER\Sistemi baze\Obrada transkacija u MongoDB  izmena.pdf,Obrada transkacija u MongoDB  izmena.pdf,pdf,465159,2025-11-30 15:58:59,2025-11-30 15:59:02,2025-11-30 15:59:14
+C:\FAX\MASTER\Sistemi baze\Optimizacija upita kod MongoDB (1).pdf,Optimizacija upita kod MongoDB (1).pdf,pdf,1164046,2025-11-02 13:44:26,2025-11-02 13:41:26,2025-11-02 14:10:11
+C:\FAX\MASTER\Sistemi baze\Drugi seminarski\obrada transkacija struktura.txt,obrada transkacija struktura.txt,txt,3319,2025-11-23 16:55:03,2025-11-23 16:55:03,2025-11-29 14:23:48
+C:\FAX\MASTER\Sistemi baze\Drugi seminarski\Obrada transkacija u MongoDB  izmena.docx,Obrada transkacija u MongoDB  izmena.docx,docx,1029756,2025-11-30 14:20:06,2025-12-05 22:49:32,2025-12-24 18:30:44
+C:\FAX\MASTER\Sistemi baze\Drugi seminarski\template.docx,template.docx,docx,143045,2025-11-23 17:23:57,2025-11-30 14:19:50,2025-12-17 20:25:19
+C:\FAX\MASTER\Sistemi baze\Drugi seminarski\test\proba.js,proba.js,js,624,2025-11-29 19:06:59,2025-11-29 19:07:23,2025-12-11 21:45:44
+C:\FAX\MASTER\Sistemi baze\Prvi seminarski rad- Optimizacija upita\Optimizacija upita u MongoDB.docx,Optimizacija upita u MongoDB.docx,docx,632490,2025-11-02 13:14:43,2025-11-23 15:56:13,2025-12-14 14:24:56
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Seminarski optimizacija upita.docx,Seminarski optimizacija upita.docx,docx,145960,2025-07-19 20:02:50,2025-07-20 17:00:37,2025-11-29 14:18:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\SistemiBazeProjekat.sln,SistemiBazeProjekat.sln,sln,1568,2025-07-05 18:17:05,2025-07-05 19:27:07,2025-11-02 13:12:17
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\appsettings.Development.json,appsettings.Development.json,json,127,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:32:10
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\appsettings.json,appsettings.json,json,511,2025-07-09 21:25:53,2025-07-11 01:22:52,2025-07-19 14:32:10
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\docker-compose.yml,docker-compose.yml,yml,374,2025-07-09 21:25:53,2025-07-10 02:03:33,2025-07-19 14:32:02
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Dockerfile,Dockerfile,no_ext,391,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Program.cs,Program.cs,cs,2042,2025-07-09 21:25:53,2025-07-11 01:40:38,2025-07-19 14:27:05
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Sistemi Baze Projekat.csproj,Sistemi Baze Projekat.csproj,csproj,532,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:49
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Sistemi Baze Projekat.csproj.user,Sistemi Baze Projekat.csproj.user,user,238,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:22:56
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Sistemi Baze Projekat.http,Sistemi Baze Projekat.http,http,155,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\SistemiBazeProjekat.csproj,SistemiBazeProjekat.csproj,csproj,533,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\WeatherForecast.cs,WeatherForecast.cs,cs,301,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\appsettings.Development.json,appsettings.Development.json,json,127,2025-07-11 01:44:36,2025-07-09 21:25:53,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\appsettings.json,appsettings.json,json,511,2025-07-11 01:44:36,2025-07-11 01:22:52,2025-07-11 01:44:36
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\DnsClient.dll,DnsClient.dll,dll,154112,2025-07-11 01:44:36,2022-06-10 22:37:22,2025-07-19 14:32:31
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll,Microsoft.AspNetCore.OpenApi.dll,dll,195352,2025-07-11 01:44:36,2025-03-14 18:09:28,2025-07-19 14:32:31
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Microsoft.OpenApi.dll,Microsoft.OpenApi.dll,dll,243784,2025-07-11 01:44:36,2024-12-20 17:11:34,2025-07-19 14:32:31
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\MongoDB.Bson.dll,MongoDB.Bson.dll,dll,556544,2025-07-11 01:44:36,2025-05-01 20:22:14,2025-07-19 14:32:31
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\MongoDB.Driver.dll,MongoDB.Driver.dll,dll,2482176,2025-07-11 01:44:36,2025-05-01 20:22:58,2025-07-19 14:32:31
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\SharpCompress.dll,SharpCompress.dll,dll,546304,2025-07-11 01:44:36,2021-11-22 10:21:32,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Sistemi Baze Projekat.deps.json,Sistemi Baze Projekat.deps.json,json,11979,2025-07-11 01:44:36,2025-07-19 14:26:58,2025-07-19 14:32:12
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Sistemi Baze Projekat.dll,Sistemi Baze Projekat.dll,dll,60928,2025-07-11 01:44:36,2025-07-19 14:26:57,2025-07-19 14:32:09
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Sistemi Baze Projekat.exe,Sistemi Baze Projekat.exe,exe,147456,2025-07-11 01:44:36,2025-07-19 14:26:57,2025-10-21 16:07:46
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Sistemi Baze Projekat.pdb,Sistemi Baze Projekat.pdb,pdb,36024,2025-07-11 01:44:36,2025-07-19 14:26:57,2025-07-19 14:32:31
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Sistemi Baze Projekat.runtimeconfig.json,Sistemi Baze Projekat.runtimeconfig.json,json,416,2025-07-11 01:44:36,2025-07-19 14:26:58,2025-07-19 14:32:12
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Sistemi Baze Projekat.staticwebassets.endpoints.json,Sistemi Baze Projekat.staticwebassets.endpoints.json,json,51,2025-07-11 01:44:36,2025-07-11 01:44:36,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Snappier.dll,Snappier.dll,dll,40448,2025-07-11 01:44:36,2021-01-23 18:43:32,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll,Swashbuckle.AspNetCore.Swagger.dll,dll,17920,2025-07-11 01:44:36,2025-06-13 19:13:56,2025-07-19 14:32:10
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll,Swashbuckle.AspNetCore.SwaggerGen.dll,dll,155136,2025-07-11 01:44:36,2025-06-13 19:15:14,2025-07-19 14:32:31
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll,Swashbuckle.AspNetCore.SwaggerUI.dll,dll,2333184,2025-07-11 01:44:36,2025-06-13 19:14:10,2025-07-19 14:32:31
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\bin\Debug\net9.0\ZstdSharp.dll,ZstdSharp.dll,dll,406016,2025-07-11 01:44:36,2023-10-18 18:06:06,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Controllers\ItemController.cs,ItemController.cs,cs,755,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Controllers\OrderController.cs,OrderController.cs,cs,1796,2025-07-09 21:25:53,2025-07-10 01:42:33,2025-07-19 14:32:09
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Controllers\ProductController.cs,ProductController.cs,cs,2353,2025-07-09 21:25:53,2025-07-09 23:59:56,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Controllers\UserController.cs,UserController.cs,cs,1476,2025-07-11 00:56:12,2025-07-11 01:39:51,2025-07-19 14:32:09
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\DTOs\CreateOrderDTO.cs,CreateOrderDTO.cs,cs,126,2025-07-10 00:01:40,2025-07-10 00:26:09,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\DTOs\CreateProductDTO.cs,CreateProductDTO.cs,cs,142,2025-07-09 23:23:59,2025-07-09 23:25:40,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\DTOs\CreateUserDTO.cs,CreateUserDTO.cs,cs,99,2025-07-11 00:43:22,2025-07-11 01:46:21,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\DTOs\GetItemDTO.cs,GetItemDTO.cs,cs,98,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Infrastructure\MongoDbCollectionRegistry.cs,MongoDbCollectionRegistry.cs,cs,2321,2025-07-09 21:25:53,2025-07-11 01:40:27,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Interfaces\IOrderService.cs,IOrderService.cs,cs,366,2025-07-09 21:25:53,2025-07-10 00:05:18,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Interfaces\IProductRepository.cs,IProductRepository.cs,cs,172,2025-07-10 01:25:47,2025-07-10 01:25:52,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Interfaces\IProductService.cs,IProductService.cs,cs,455,2025-07-09 21:25:53,2025-07-10 00:46:30,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Interfaces\IUserService.cs,IUserService.cs,cs,427,2025-07-11 00:38:30,2025-07-11 01:55:42,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Models\Item.cs,Item.cs,cs,333,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Models\MongoCollections.cs,MongoCollections.cs,cs,276,2025-07-09 21:25:53,2025-07-11 01:12:46,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Models\Order.cs,Order.cs,cs,435,2025-07-09 21:25:53,2025-07-09 21:54:41,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Models\Product.cs,Product.cs,cs,562,2025-07-09 21:25:53,2025-07-10 00:35:57,2025-07-19 14:30:03
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Models\User.cs,User.cs,cs,405,2025-07-11 00:28:43,2025-07-11 00:55:49,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\project.assets.json,project.assets.json,json,37895,2025-07-09 21:25:53,2025-07-19 14:23:03,2025-07-19 14:32:11
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\project.nuget.cache,project.nuget.cache,cache,2959,2025-07-09 21:25:53,2025-07-19 14:23:03,2025-07-19 14:23:03
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Sistemi Baze Projekat.csproj.nuget.dgspec.json,Sistemi Baze Projekat.csproj.nuget.dgspec.json,json,3405,2025-07-09 21:25:53,2025-07-19 14:23:03,2025-07-19 14:23:03
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Sistemi Baze Projekat.csproj.nuget.g.props,Sistemi Baze Projekat.csproj.nuget.g.props,props,2252,2025-07-09 21:25:53,2025-07-19 14:23:03,2025-07-19 14:32:12
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Sistemi Baze Projekat.csproj.nuget.g.targets,Sistemi Baze Projekat.csproj.nuget.g.targets,targets,551,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:23:03
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\ApiEndpoints.json,ApiEndpoints.json,json,6775,2025-07-09 21:25:53,2025-07-19 14:32:11,2025-07-19 14:32:11
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\apphost.exe,apphost.exe,exe,147456,2025-07-09 21:25:53,2025-07-19 14:26:57,2025-07-19 14:26:57
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi .FA858051.Up2Date,Sistemi .FA858051.Up2Date,up2date,0,2025-07-11 01:44:36,2025-07-11 01:44:36,2025-07-11 01:44:36
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.AssemblyInfo.cs,Sistemi Baze Projekat.AssemblyInfo.cs,cs,1077,2025-07-09 21:25:53,2025-07-11 01:44:35,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.AssemblyInfoInputs.cache,Sistemi Baze Projekat.AssemblyInfoInputs.cache,cache,66,2025-07-09 21:25:53,2025-07-11 01:44:35,2025-07-19 14:32:12
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.assets.cache,Sistemi Baze Projekat.assets.cache,cache,11660,2025-07-09 21:25:53,2025-07-19 14:23:04,2025-07-19 14:32:12
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.csproj.AssemblyReference.cache,Sistemi Baze Projekat.csproj.AssemblyReference.cache,cache,6097,2025-07-09 21:25:53,2025-07-11 01:44:34,2025-07-19 14:26:49
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.csproj.BuildWithSkipAnalyzers,Sistemi Baze Projekat.csproj.BuildWithSkipAnalyzers,buildwithskipanalyzers,0,2025-07-09 21:25:53,2025-07-19 14:26:57,2025-07-19 14:26:57
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.csproj.CoreCompileInputs.cache,Sistemi Baze Projekat.csproj.CoreCompileInputs.cache,cache,66,2025-07-09 21:25:53,2025-07-15 00:08:45,2025-07-19 14:32:12
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.csproj.FileListAbsolute.txt,Sistemi Baze Projekat.csproj.FileListAbsolute.txt,txt,4791,2025-07-09 21:25:53,2025-07-11 01:44:36,2025-07-19 14:26:58
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.dll,Sistemi Baze Projekat.dll,dll,60928,2025-07-11 01:44:36,2025-07-19 14:26:57,2025-07-19 14:32:17
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.GeneratedMSBuildEditorConfig.editorconfig,Sistemi Baze Projekat.GeneratedMSBuildEditorConfig.editorconfig,editorconfig,1092,2025-07-09 21:25:53,2025-07-11 01:44:35,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.genruntimeconfig.cache,Sistemi Baze Projekat.genruntimeconfig.cache,cache,66,2025-07-11 01:44:36,2025-07-11 01:44:36,2025-07-19 14:26:58
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.GlobalUsings.g.cs,Sistemi Baze Projekat.GlobalUsings.g.cs,cs,770,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.MvcApplicationPartsAssemblyInfo.cache,Sistemi Baze Projekat.MvcApplicationPartsAssemblyInfo.cache,cache,0,2025-07-11 01:44:35,2025-07-19 14:26:49,2025-07-19 14:26:49
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.MvcApplicationPartsAssemblyInfo.cs,Sistemi Baze Projekat.MvcApplicationPartsAssemblyInfo.cs,cs,737,2025-07-11 01:44:35,2025-07-19 14:26:49,2025-07-19 14:32:12
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.pdb,Sistemi Baze Projekat.pdb,pdb,36024,2025-07-11 01:44:36,2025-07-19 14:26:57,2025-07-19 14:32:17
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\Sistemi Baze Projekat.sourcelink.json,Sistemi Baze Projekat.sourcelink.json,json,205,2025-07-11 01:44:35,2025-07-11 01:44:35,2025-07-19 14:26:57
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\staticwebassets.build.endpoints.json,staticwebassets.build.endpoints.json,json,51,2025-07-11 01:44:36,2025-07-11 01:44:36,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\staticwebassets.build.json,staticwebassets.build.json,json,271,2025-07-11 01:44:36,2025-07-11 01:44:36,2025-07-19 14:26:58
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\staticwebassets.build.json.cache,staticwebassets.build.json.cache,cache,44,2025-07-11 01:44:36,2025-07-11 01:44:36,2025-07-19 14:26:58
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\staticwebassets.references.upToDateCheck.txt,staticwebassets.references.upToDateCheck.txt,txt,0,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-09 21:25:53
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\staticwebassets.removed.txt,staticwebassets.removed.txt,txt,0,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-09 21:25:53
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\EndpointInfo\Sistemi Baze Projekat.json,Sistemi Baze Projekat.json,json,13477,2025-07-09 21:25:53,2025-07-19 14:32:11,2025-07-19 14:32:11
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\EndpointInfo\Sistemi Baze Projekat.OpenApiFiles.cache,Sistemi Baze Projekat.OpenApiFiles.cache,cache,28,2025-07-09 21:25:53,2025-07-19 14:32:11,2025-07-19 14:32:12
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\ref\Sistemi Baze Projekat.dll,Sistemi Baze Projekat.dll,dll,25088,2025-07-11 01:44:36,2025-07-15 00:08:46,2025-07-19 14:26:58
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\obj\Debug\net9.0\refint\Sistemi Baze Projekat.dll,Sistemi Baze Projekat.dll,dll,25088,2025-07-11 01:44:36,2025-07-19 14:26:57,2025-07-19 14:26:58
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Properties\launchSettings.json,launchSettings.json,json,642,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:14:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Repository\GenericRepository.cs,GenericRepository.cs,cs,4832,2025-07-09 21:25:53,2025-07-11 02:03:25,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Repository\IGenericRepository.cs,IGenericRepository.cs,cs,361,2025-07-09 21:25:53,2025-07-11 02:02:01,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Repository\ProductRepository.cs,ProductRepository.cs,cs,1034,2025-07-10 00:34:44,2025-07-11 00:21:11,2025-07-19 14:32:09
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Services\ItemService.cs,ItemService.cs,cs,1046,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Services\MongoService.cs,MongoService.cs,cs,628,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Services\OrderService.cs,OrderService.cs,cs,2477,2025-07-09 21:25:53,2025-07-14 23:52:59,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Services\ProductService.cs,ProductService.cs,cs,3196,2025-07-09 21:25:53,2025-07-10 00:46:34,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Services\UserService.cs,UserService.cs,cs,1663,2025-07-11 00:39:07,2025-07-11 02:04:51,2025-07-19 14:26:50
+C:\FAX\MASTER\Sistemi baze\Sistemi Baze Projekat\Sistemi Baze Projekat\Settings\MongoSettings.cs,MongoSettings.cs,cs,253,2025-07-09 21:25:53,2025-07-09 21:25:53,2025-07-19 14:26:51
+C:\FAX\MASTER\Sistemi baze\Treci seminarski\Distribucija baze kod MongoDB.docx,Distribucija baze kod MongoDB.docx,docx,4399744,2025-12-08 20:41:30,2025-12-18 00:41:49,2025-12-24 22:23:40
+C:\FAX\MASTER\Sistemi baze\Treci seminarski\sadrzaj prakticnog dela.txt,sadrzaj prakticnog dela.txt,txt,2910,2025-12-10 23:48:31,2025-12-10 23:48:46,2025-12-10 23:48:46
+C:\FAX\MASTER\Sistemi baze\Treci seminarski\Seminarski Mongodb Distribucija.docx,Seminarski Mongodb Distribucija.docx,docx,14751,2025-12-08 20:25:22,2025-12-08 20:24:52,2025-12-24 18:30:40
+C:\FAX\MASTER\Web mining\Predlog teme.docx,Predlog teme.docx,docx,17862,2025-12-07 17:17:24,2025-12-07 17:17:25,2025-12-17 20:25:21
+C:\FAX\MASTER\Web mining\prez.txt,prez.txt,txt,4280,2025-12-07 16:54:16,2025-12-07 16:54:16,2025-12-14 14:24:51
