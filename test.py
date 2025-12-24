@@ -525,10 +525,124 @@ def plot_github_style_calendar(df, out_dir, date_col='accessed'):
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     plt.tight_layout()
     plt.savefig(Path(out_dir) / 'github_calendar_heatmap.png', dpi=200)
-    plt.close()
+    plt.show()
 
 
-    
+def plot_github_calendar_all_years(df, out_dir, date_col='accessed'):
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from pathlib import Path
+    from matplotlib.gridspec import GridSpec
+
+    df[date_col] = pd.to_datetime(df[date_col])
+    years = sorted(df[date_col].dt.year.unique())
+
+    global_max = (
+        df.groupby(df[date_col].dt.date)
+          .size()
+          .max()
+    )
+
+    fig = plt.figure(figsize=(22, 4 * len(years)))
+    gs = GridSpec(
+        nrows=len(years),
+        ncols=2,
+        width_ratios=[22, 1],
+        wspace=0.05
+    )
+
+    mappable = None
+
+    for i, year in enumerate(years):
+        ax = fig.add_subplot(gs[i, 0])
+
+        df_year = df[df[date_col].dt.year == year]
+
+        daily = (
+            df_year.groupby(df_year[date_col].dt.date)
+                   .size()
+                   .rename("count")
+                   .reset_index()
+                   .rename(columns={date_col: "date"})
+        )
+
+        daily['date'] = pd.to_datetime(daily['date'])
+
+        all_days = pd.date_range(
+            start=f'{year}-01-01',
+            end=f'{year}-12-31',
+            freq='D'
+        )
+
+        daily = (
+            daily.set_index('date')
+                 .reindex(all_days, fill_value=0)
+                 .rename_axis('date')
+                 .reset_index()
+        )
+
+        daily['weekday'] = daily['date'].dt.weekday
+        daily['week_start'] = daily['date'] - pd.to_timedelta(
+            daily['weekday'], unit='D'
+        )
+
+        heatmap = daily.pivot(
+            index='weekday',
+            columns='week_start',
+            values='count'
+        )
+
+        Z = heatmap.values
+
+        mappable = ax.pcolormesh(
+            Z,
+            cmap='Greens',
+            edgecolors='grey',
+            linewidth=0.6,
+            vmin=0,
+            vmax=global_max
+        )
+
+        ax.set_yticks(np.arange(0.5, 7.5))
+        ax.set_yticklabels(
+            ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        )
+
+        ax.set_xticks([])
+
+        # 👇 GODINA SA LEVE STRANE
+        ax.text(
+            -1.8,              # X pozicija (levo od Mon)
+            3.5,               # Y sredina (između Wed/Thu)
+            str(year),
+            fontsize=14,
+            fontweight='bold',
+            ha='right',
+            va='center',
+            transform=ax.transData
+        )
+
+    # Colorbar desno
+    cax = fig.add_subplot(gs[:, 1])
+    cbar = fig.colorbar(mappable, cax=cax)
+    cbar.set_label('Number of file accesses')
+
+    fig.suptitle(
+        'GitHub-style calendar of file access (all years)',
+        fontsize=16
+    )
+
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
+    fig.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.05, wspace=0.05, hspace=0.3)
+    plt.savefig(Path(out_dir) / 'github_calendar_all_years.png', dpi=200)
+    plt.show()
+
+
+
+
+
+
 
 def main():
     parser = argparse.ArgumentParser(description='Alat za analizu i vizualizaciju metapodataka fajlova')
@@ -557,11 +671,12 @@ def main():
 
     if args.visualize:
         print("visualize je true")
-        plot_file_types(df, args.out_dir)
-        plot_file_sizes1(df, args.out_dir)
-        plot_modification_time(df, args.out_dir)
-        plot_github_style_calendar(df,args.out_dir)
-        detect_anomalies(df, args.out_dir)
+    #    plot_file_types(df, args.out_dir)
+      #  plot_file_sizes1(df, args.out_dir)
+      #  plot_modification_time(df, args.out_dir)
+        plot_github_calendar_all_years(df, out_dir="Petar")
+        #plot_github_style_calendar(df,args.out_dir)
+       # detect_anomalies(df, args.out_dir)
         print(f'Grafički prikazi sačuvani u {args.out_dir}/')
 
 if __name__ == '__main__':
