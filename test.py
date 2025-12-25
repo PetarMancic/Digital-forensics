@@ -26,17 +26,6 @@ try:
 except ImportError:
     SKLEARN_AVAILABLE = False
 
-
-def human_readable_size(nbytes):
-    if nbytes == 0:
-        return '0 B'
-    sizes = ['B','KB','MB','GB','TB']
-    i = int(np.floor(np.log(nbytes)/np.log(1024)))
-    p = np.power(1024, i)
-    s = round(nbytes / p, 2)
-    return f'{s} {sizes[i]}'
-
-
 def scan_directory(root_path, include_hidden=False):
     metadata = []
     for dirpath, dirnames, filenames in os.walk(root_path):
@@ -458,263 +447,25 @@ def plot_file_types(df, out_dir):
     plt.show()
     
 
-def plot_modification_time(df, out_dir):
-    df['modified_month'] = df['modified'].dt.to_period('M')
 
-    print("plot modification time ")
-    counts = df['modified_month'].value_counts().sort_index()
-
-    plt.figure(figsize=(10,4))
-    counts.plot()
-    plt.title('Broj izmenjenih fajlova kroz vreme')
-    plt.xlabel('Vreme')
-    plt.ylabel('Broj fajlova')
-    plt.tight_layout()
-    plt.savefig(Path(out_dir) / 'file_modifications_over_time.png')
-    plt.close()
-
-def plot_github_style_calendar(df, out_dir, date_col='accessed'):
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from pathlib import Path
-
-    df[date_col] = pd.to_datetime(df[date_col])
-
-    # Broj pristupa po danu
-    daily = (
-        df.groupby(df[date_col].dt.date)
-          .size()
-          .rename("count")
-          .reset_index()
-          .rename(columns={date_col: "date"})
-    )
-
-    daily['date'] = pd.to_datetime(daily['date'])
-
-    # Popuni sve dane
-    all_days = pd.date_range(daily['date'].min(), daily['date'].max(), freq='D')
-    daily = daily.set_index('date').reindex(all_days, fill_value=0)
-    daily.index.name = 'date'
-    daily.reset_index(inplace=True)
-
-    
-    daily['weekday'] = daily['date'].dt.weekday      
-    daily['week'] = (
-        daily['date'] - pd.to_timedelta(daily['weekday'], unit='D')
-    ).dt.isocalendar().week
-
-   
-    heatmap = daily.pivot(index='weekday', columns='week', values='count')
-    month_starts = daily[
-        daily['date'].dt.is_month_start
-    ][['date', 'week_start']].drop_duplicates('week_start')
-
-    xticks = []
-    xlabels = []
-
-    for col_idx, week in enumerate(heatmap.columns):
-        if week in set(month_starts['week_start']):
-            month = week.month
-            xticks.append(col_idx)
-            xlabels.append(week.strftime('%b'))
-
-    plt.figure(figsize=(18, 4))
-    im = plt.imshow(heatmap, aspect='auto', cmap='Blues')
-
-    # Y ose: dani u nedelji
-    plt.yticks(
-        ticks=np.arange(7),
-        labels=['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    )
-
-    plt.xlabel('Weeks')
-    plt.title('GitHub-style calendar heatmap – pristup fajlovima')
-
-    cbar = plt.colorbar(im)
-    cbar.set_label('Broj pristupa')
-
-    Path(out_dir).mkdir(parents=True, exist_ok=True)
-    plt.tight_layout()
-    plt.savefig(Path(out_dir) / 'github_calendar_heatmap.png', dpi=200)
-    plt.show()
-
-
-def plot_github_calendar_all_years(df, out_dir, date_col='accessed'):
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from pathlib import Path
-    from matplotlib.gridspec import GridSpec
-
-    # Provera podataka
-    if df is None or df.empty:
-        print("⚠️ Nema podataka za vizuelizaciju!")
-        return
-
-    # Konverzija datuma
-    try:
-        df[date_col] = pd.to_datetime(df[date_col])
-    except Exception as e:
-        print(f"❌ Greška pri konverziji datuma: {e}")
-        return
-
-    # Izvlačenje godina
-    years = sorted(df[date_col].dt.year.unique())
-    if not years:
-        print("⚠️ Nema validnih godina u podacima!")
-        return
-
-    print(f"📅 Vizuelizujem godine: {years}")
-
-    # Globalni maksimum (ista skala boja za sve godine)
-    try:
-        global_max = df.groupby(df[date_col].dt.date).size().max()
-        if global_max == 0:
-            global_max = 1
-    except:
-        global_max = 1
-
-    # Figure & Grid
-    num_years = len(years)
-    fig = plt.figure(figsize=(22, 4 * num_years))
-
-    gs = GridSpec(
-        nrows=num_years,
-        ncols=2,
-        width_ratios=[22, 1],
-        wspace=0.05
-    )
-
-    mappable = None
-
-    for i, year in enumerate(years):
-        ax = fig.add_subplot(gs[i, 0])
-        df_year = df[df[date_col].dt.year == year]
-
-        # Grupisanje po danima
-        daily = (
-            df_year.groupby(df_year[date_col].dt.date)
-            .size()
-            .rename("count")
-            .reset_index()
-            .rename(columns={date_col: "date"})
-        )
-
-        daily['date'] = pd.to_datetime(daily['date'])
-
-        # Kompletan opseg dana u godini
-        all_days = pd.date_range(
-            start=f'{year}-01-01',
-            end=f'{year}-12-31',
-            freq='D'
-        )
-
-        daily = (
-            daily.set_index('date')
-            .reindex(all_days, fill_value=0)
-            .rename_axis('date')
-            .reset_index()
-        )
-
-        # Dan u nedelji i početak nedelje
-        daily['weekday'] = daily['date'].dt.weekday
-        daily['week_start'] = daily['date'] - pd.to_timedelta(
-            daily['weekday'], unit='D'
-        )
-
-        # Pivot tabela
-        heatmap = daily.pivot(
-            index='weekday',
-            columns='week_start',
-            values='count'
-        )
-
-        Z = heatmap.values
-
-        # Crtanje heatmap-e
-        mappable = ax.pcolormesh(
-            Z,
-            cmap='Greens',
-            edgecolors='grey',
-            linewidth=0.6,
-            vmin=0,
-            vmax=global_max
-        )
-
-        # Y osa – dani u nedelji
-        ax.set_yticks(np.arange(0.5, 7.5))
-        ax.set_yticklabels(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
-
-        # -------------------------------
-        # X osa – MESECI (GitHub stil)
-        # -------------------------------
-        month_starts = daily[
-            daily['date'].dt.is_month_start
-        ][['date', 'week_start']].drop_duplicates('week_start')
-
-        xticks = []
-        xlabels = []
-
-        for idx, week in enumerate(heatmap.columns):
-            if week in set(month_starts['week_start']):
-                xticks.append(idx)
-                xlabels.append(week.strftime('%b'))
-
-        ax.set_xticks(xticks)
-        ax.set_xticklabels(xlabels, fontsize=9)
-
-        # Oznaka godine levo
-        ax.text(
-            -1.8,
-            3.5,
-            str(year),
-            fontsize=14,
-            fontweight='bold',
-            ha='right',
-            va='center',
-            transform=ax.transData
-        )
-
-    # Colorbar
-    if mappable is not None:
-        cax = fig.add_subplot(gs[:, 1])
-        cbar = fig.colorbar(mappable, cax=cax)
-        cbar.set_label('Broj pristupa fajlovima')
-
-    # NASLOV (ne seče se)
-    fig.suptitle(
-        'GitHub-style kalendar pristupa fajlovima',
-        fontsize=18,
-        y=1.02
-    )
-
-    # Layout
-    fig.subplots_adjust(
-        left=0.05,
-        right=0.95,
-        top=0.90,
-        bottom=0.05,
-        wspace=0.05,
-        hspace=0.35
-    )
-
-    # Čuvanje
-    Path(out_dir).mkdir(parents=True, exist_ok=True)
-    output_path = Path(out_dir) / 'github_calendar_all_years.png'
-    plt.savefig(output_path, dpi=200)
-    print(f"✅ Grafik sačuvan: {output_path}")
-    plt.show()
 
 def caltplott(out_dir):
-    df_days = groupBydays()
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import calplot
+    from pathlib import Path
+
+    # 1. Učitaj dnevnu statistiku (po accessed)
+    df_days = groupBydays(out_dir)
 
     if df_days is None or df_days.empty:
         print("⚠️ Nema podataka za crtanje calplot-a")
         return
 
-    # 2. Priprema za calplot
-    df_days['access_date'] = pd.to_datetime(df_days['access_date'])
+    # 2. Priprema za calplot (OBAVEZNA konverzija u datetime)
+    df_days['access_date'] = pd.to_datetime(df_days['access_date'], errors='coerce')
+    df_days = df_days.dropna(subset=['access_date'])
+
     series = df_days.set_index('access_date')['access_count']
 
     # 3. Crtanje
@@ -722,22 +473,24 @@ def caltplott(out_dir):
         series,
         cmap='Blues',
         figsize=(16, 6),
-        suptitle='Kalendar pristupa fajlovima (po danima)'
+        suptitle='Kalendar poslednjeg pristupa fajlovima (po danima)'
     )
 
     # 4. Snimanje
     Path(out_dir).mkdir(parents=True, exist_ok=True)
-    output_path = Path(out_dir) / 'calendar_calplot.png'
-    plt.savefig(output_path, dpi=200)
+    output_path = Path(out_dir) / 'calendar_accessed_calplot.png'
+    plt.savefig(output_path, dpi=200, bbox_inches='tight')
     plt.show()
 
     print(f"✅ Grafik sačuvan: {output_path}")
 
 
-def groupBydays():
+
+
+#ovo je stari groupByDays
+def groupBydays(filePath):
     # Load the CSV file with explicit date parsing
-    df = pd.read_csv(
-        "C:\\FAX\\MASTER\\Digitalna forenzika\\Digital-forensics\\24122025\\metadata.csv",
+    df = pd.read_csv(filePath + "\\metadata.csv",
         # Automatically parse the 'accessed' column during loading
         parse_dates=['accessed'],
         # The datetime format is YYYY-MM-DD HH:MM:SS
@@ -793,6 +546,7 @@ def groupBydays():
     print(daily_accesses_full.head())
 
     return daily_accesses_full
+
 
 
 import pandas as pd
@@ -857,12 +611,10 @@ def main():
     if args.visualize:
         print("visualize je true")
         plot_file_types(df, args.out_dir)
-      #  plot_file_sizes1(df, args.out_dir)
-      #  plot_modification_time(df, args.out_dir)
- #       plot_github_calendar_all_years(df, out_dir="Petar")
+        plot_file_sizes1(df, args.out_dir)
         caltplott(args.out_dir)
         #plot_github_style_calendar(df,args.out_dir)
-       # detect_anomalies(df, args.out_dir)
+        detect_anomalies(df, args.out_dir)
         print(f'Grafički prikazi sačuvani u {args.out_dir}/')
 
 if __name__ == '__main__':
