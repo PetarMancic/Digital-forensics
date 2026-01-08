@@ -112,3 +112,21 @@ Potrebno je imati instaliran Python (verzija 3.9 ili novija).
 ### Instalacija zavisnosti
 ```bash
 pip install pandas matplotlib plotly
+```
+Takodje potrebno bilo koje razvojno okruženje u kojem bismo mogli implementirati resenje. U mom slucaju ja sam koristio Visual Studio Code.
+
+Sto se tice pokretanja samog programa:
+
+```bash
+python test.py --path --out-dir --visualize --detect-iqr
+
+--path ---> predstavlja putanju do foldera koji bismo zeleli da analiziramo
+--out-dir--> predstavlja putanju do foldera gde bismo zeleli da skladistimo rezultat funkcije (slike grafikona )
+--visualize -> boolean vrednost kojom kazemo da li zelimo da iscrtamo grafike ili ne
+--detect-iqr -> boolean vrednost kojom kazemo da li zelimo da se iscrta grafik anomalije
+
+primer kako sam ja pozivao funkciju je :
+python test.py "C\Master\DigitalForensics" "outputDirectory" --visualize --detect-iqr
+```
+
+
