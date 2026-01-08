@@ -3,7 +3,7 @@
 
 # File System Metadata Analysis and Visualization Tool
 
-## 📖 Opšti opis projekta
+##  Opšti opis projekta
 
 Ovaj projekat predstavlja sveobuhvatan alat za analizu i vizualizaciju metapodataka fajlova u fajl sistemu, razvijen korišćenjem programskog jezika **Python**.
 Alat je osmišljen sa ciljem da omogući sistematsku obradu velikog broja fajlova i da korisniku pruži jasan, intuitivan i vizuelno razumljiv prikaz strukture i ponašanja fajl sistema.
@@ -12,7 +12,7 @@ Analiza metapodataka fajlova ima široku primenu u oblastima kao što su **digit
 
 ---
 
-## 🎯 Ciljevi projekta
+##  Ciljevi projekta
 
 Glavni ciljevi ovog projekta su:
 
@@ -24,7 +24,7 @@ Glavni ciljevi ovog projekta su:
 
 ---
 
-## 📂 Metapodaci koji se analiziraju
+##  Metapodaci koji se analiziraju
 
 Alat prikuplja sledeće metapodatke za svaki fajl:
 
@@ -39,7 +39,7 @@ Ovi podaci se skladište u strukturiranom formatu (pandas DataFrame) i predstavl
 
 ---
 
-## 📊 Vizualizacije i analiza
+##  Vizualizacije i analiza
 
 Ovaj alat sluzi kako bi generisao 4 razlicita grafika.
 
@@ -82,7 +82,8 @@ Ove vizualizacije pomažu u:
 
 ### 4️⃣ Detekcija anomalija
 
-Detekcija anomalija se zasniva na statističkoj analizi metapodataka, pri čemu se identifikuju fajlovi koji značajno odstupaju od prosečnih vrednosti.
+Detekcija anomalija se zasniva na statističkoj analizi metapodataka, pri čemu se identifikuju fajlovi koji značajno odstupaju od prosečnih vrednosti. Prosečna vrednost se ogleda u količini broja pristupa nekom fajlu u toku dana. 
+Ukoliko se previse puta pristupalo 
 
 Primeri anomalija uključuju:
 - fajlove čija je veličina znatno veća od prosečne vrednosti,
