@@ -16,7 +16,6 @@ import os
 from pathlib import Path
 from datetime import datetime
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -50,14 +49,26 @@ def scan_directory(root_path, include_hidden=False):
     return pd.DataFrame(metadata)
 
 
-def detect_anomalies_iqr(df, column='size_bytes'):
-    q1 = df[column].quantile(0.25)
-    q3 = df[column].quantile(0.75)
-    iqr = q3 - q1
-    lower = q1 - 1.5*iqr
-    upper = q3 + 1.5*iqr
-    mask = (df[column]<lower) | (df[column]>upper)
-    return df[mask]
+def detect_anomalies_iqr(df, value_col='access_count'):
+
+    Q1 = df[value_col].quantile(0.25)
+    Q2 = df[value_col].quantile(0.50)
+    Q3 = df[value_col].quantile(0.75)
+
+
+    IQR = Q3 - Q1
+
+
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+
+    df['is_anomaly'] = (
+        (df[value_col] < lower_bound) |
+        (df[value_col] > upper_bound)
+    )
+
+    return df, Q1, Q2, Q3, lower_bound, upper_bound
+
 
 
 def detect_anomalies(df, out_dir):
@@ -90,10 +101,8 @@ def plot_file_sizes(df, out_dir):
     import pandas as pd
     from matplotlib.gridspec import GridSpec
 
-    # Stil
     sns.set_style("whitegrid")
 
-    # Figura + GridSpec (2 reda x 2 kolone)
     fig = plt.figure(figsize=(16, 9))
     gs = GridSpec(
         2, 2,
@@ -159,7 +168,7 @@ def plot_file_sizes(df, out_dir):
 
     ax1.legend(loc='upper right')
 
-    # ================= PIE CHART =================
+
     size_categories = pd.cut(
         df['size_bytes'],
         bins=[0, 1024, 10240, 102400, 1024000, float('inf')],
@@ -203,7 +212,6 @@ def plot_file_sizes(df, out_dir):
         fontsize=10
     )
 
-    # ================= TABELA STATISTIKA =================
     table_ax.axis("off")
 
     table_data = [
@@ -232,7 +240,6 @@ def plot_file_sizes(df, out_dir):
             cell.set_text_props(weight='bold')
             cell.set_facecolor("#f2e5c4")
 
-    # ================= NASLOV + SAVE =================
     plt.suptitle(
         "ANALIZA VELIČINE FAJLOVA",
         fontsize=18, fontweight='bold', y=0.98
@@ -253,7 +260,7 @@ def plot_file_sizes1(df, out_dir):
     import pandas as pd
     from matplotlib.gridspec import GridSpec
 
-    # ================= PRIPREMA PODATAKA =================
+
     bins = [0, 1024, 10_240, 102_400, 1_024_000, float('inf')]
     labels = ['<1 KB', '1–10 KB', '10–100 KB', '100 KB–1 MB', '>1 MB']
 
@@ -262,7 +269,7 @@ def plot_file_sizes1(df, out_dir):
 
     avg_size = df['size_bytes'].mean()
 
-    # ================= FIGURA =================
+
     fig = plt.figure(figsize=(16, 9))
     gs = GridSpec(2, 2, height_ratios=[3, 1], hspace=0.35, wspace=0.25)
 
@@ -385,13 +392,13 @@ def plot_file_types(df, out_dir):
                 ha='center', va='bottom',
                 fontsize=9, fontweight='bold')
     
-    # Dodaj horizontalnu liniju za prosek
+
     avg_count = total / len(type_counts)
     ax1.axhline(y=avg_count, color='red', linestyle='--', 
                 alpha=0.7, linewidth=1.5, label=f'Prosek: {avg_count:.1f}')
     ax1.legend(loc='upper right')
     
-    # ============= PLOT 2: PIE CHART =============
+
     colors = sns.color_palette("Set3", len(type_counts))
     wedges, texts, autotexts = ax2.pie(type_counts.values, 
                                        labels=type_counts.index,
@@ -417,9 +424,7 @@ def plot_file_types(df, out_dir):
                bbox_to_anchor=(1, 0, 0.5, 1),
                fontsize=9)
     
-    # ============= STATISTIKA ISPOD PIE CHARTA =============
-    
-    # Napravi tekst sa statistikama
+
     textstr = f"""Statistike tipova fajlova:
     {'='*40}
     Ukupno fajlova: {total:,}
@@ -427,7 +432,7 @@ def plot_file_types(df, out_dir):
 
     
     
-    # Dodaj tekst ispod pie charta
+
     fig.text(0.75, 0.18, textstr, fontsize=9,
              ha='center',  
              va='top',     
@@ -455,20 +460,20 @@ def caltplott(out_dir):
     import calplot
     from pathlib import Path
 
-    # 1. Učitaj dnevnu statistiku (po accessed)
+
     df_days = groupBydays(out_dir)
 
     if df_days is None or df_days.empty:
         print("⚠️ Nema podataka za crtanje calplot-a")
         return
 
-    # 2. Priprema za calplot (OBAVEZNA konverzija u datetime)
+
     df_days['access_date'] = pd.to_datetime(df_days['access_date'], errors='coerce')
     df_days = df_days.dropna(subset=['access_date'])
 
     series = df_days.set_index('access_date')['access_count']
 
-    # 3. Crtanje
+   
     fig, ax = calplot.calplot(
         series,
         cmap='Blues',
@@ -476,7 +481,7 @@ def caltplott(out_dir):
         suptitle='Kalendar poslednjeg pristupa fajlovima (po danima)'
     )
 
-    # 4. Snimanje
+   
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     output_path = Path(out_dir) / 'calendar_accessed_calplot.png'
     plt.savefig(output_path, dpi=200, bbox_inches='tight')
@@ -487,98 +492,181 @@ def caltplott(out_dir):
 
 
 
-#ovo je stari groupByDays
 def groupBydays(filePath):
-    # Load the CSV file with explicit date parsing
-    df = pd.read_csv(filePath + "\\metadata.csv",
-        # Automatically parse the 'accessed' column during loading
-        parse_dates=['accessed'],
-        # The datetime format is YYYY-MM-DD HH:MM:SS
-        date_format='%Y-%m-%d %H:%M:%S'
+    import os
+    import numpy as np
+    import pandas as pd
+
+    csv_path = os.path.join(filePath, "metadata.csv")
+
+    df = pd.read_csv(
+        csv_path,
+        parse_dates=["accessed"]
     )
 
-    # Verify that the 'accessed' column is a datetime type
     print(f"Column 'accessed' has data type: {df['accessed'].dtype}")
-
-    # Count rows with and without valid dates to diagnose
-    na_count = df['accessed'].isna().sum()
-    print(f"Number of rows with invalid/NA dates: {na_count}")
     print(f"Total rows in original data: {len(df)}")
 
-    # Check a few sample values to confirm
-    print("\nSample of 'accessed' column values:")
-    print(df['accessed'].head())
+  
+    df = df.dropna(subset=["accessed"]).copy()
+  
+    df["access_date"] = df["accessed"].dt.floor("D")
 
-    # Remove any rows where 'accessed' is invalid (should be none if parsing succeeded)
-    df_clean = df.dropna(subset=['accessed'])
-
-    # Extract the date part (year-month-day) from the timestamp
-    df_clean['access_date'] = df_clean['accessed'].dt.date
-
-    # Count accesses per day using groupby
-    daily_accesses = df_clean.groupby('access_date').size().reset_index(name='access_count')
-
-    # Create a complete date range to fill missing days
-    start_date = df_clean['access_date'].min()
-    end_date = df_clean['access_date'].max()
-    all_dates = pd.date_range(start=start_date, end=end_date, freq='D')
-
-    # Merge with your daily counts to fill in zeros for days with no accesses
-    all_dates_df = pd.DataFrame({'access_date': all_dates.date})
-    daily_accesses_full = all_dates_df.merge(
-        daily_accesses,
-        on='access_date',
-        how='left'
-    ).fillna(0)
-
-    # Ensure counts are integers
-    daily_accesses_full['access_count'] = daily_accesses_full['access_count'].astype(int)
-
-    # Sort by date for a cleaner output
-    daily_accesses_full = daily_accesses_full.sort_values('access_date')
-
-    # Save to a new CSV file
-    daily_accesses_full.to_csv("daily_accesses.csv", index=False)
-
-    print(f"\nAnalysis complete. Dates range from {start_date} to {end_date}.")
-    print(f"Days analyzed: {len(daily_accesses_full)}")
-    print("Sample of results:")
-    print(daily_accesses_full.head())
-
-    return daily_accesses_full
-
-
-
-import pandas as pd
-import calplot
-import matplotlib.pyplot as plt
-from pathlib import Path
-
-def plot_with_calplot(df, out_dir, date_col='accessed'):
-    df[date_col] = pd.to_datetime(df[date_col])
-
-    # Broj pristupa po danu
-    daily = (
-        df.groupby(df[date_col].dt.date)
-          .size()
-          .rename('count')
+ 
+    df["parent_dir"] = df["path"].apply(
+        lambda p: os.path.dirname(str(p))
     )
 
-    # calplot zahteva DateTimeIndex
-    daily.index = pd.to_datetime(daily.index)
+   
+    g = df.groupby("access_date", sort=True)
 
-    Path(out_dir).mkdir(parents=True, exist_ok=True)
+    daily = g.agg(
+        access_count_raw=("path", "size"),
+        unique_files=("path", "nunique"),
+        unique_dirs=("parent_dir", "nunique"),
+        first_access=("accessed", "min"),
+        last_access=("accessed", "max"),
+    ).reset_index()
 
-    # GitHub-style calendar
-    fig, ax = calplot.calplot(
+
+    daily["span_minutes"] = (
+        daily["last_access"] - daily["first_access"]
+    ).dt.total_seconds() / 60.0
+
+    daily["is_bulk_scan"] = (
+        (daily["access_count_raw"] >= 500) &      
+        (daily["span_minutes"] <= 60) &            
+        (daily["unique_dirs"] >= 20)               
+    )
+
+   
+    daily["access_count"] = daily["access_count_raw"]
+    daily.loc[daily["is_bulk_scan"], "access_count"] = 0
+
+    start_date = daily["access_date"].min()
+    end_date = daily["access_date"].max()
+
+    all_days = pd.date_range(start=start_date, end=end_date, freq="D")
+    all_days_df = pd.DataFrame({"access_date": all_days})
+
+    daily_full = all_days_df.merge(
         daily,
-        cmap='Greens',
-        figsize=(16, 6),
-        suptitle='GitHub-style kalendar pristupa fajlovima'
+        on="access_date",
+        how="left"
     )
 
-    plt.savefig(Path(out_dir) / 'github_calendar_calplot.png', dpi=200)
-    plt.show()
+    daily_full["access_count"] = daily_full["access_count"].fillna(0).astype(int)
+    daily_full["is_bulk_scan"] = daily_full["is_bulk_scan"].fillna(False)
+
+    debug_csv = os.path.join(filePath, "daily_accesses_debug.csv")
+    daily_full.to_csv(debug_csv, index=False)
+
+    print(f"\nAnalysis complete. Dates range from {start_date.date()} to {end_date.date()}.")
+    print(f"Days analyzed: {len(daily_full)}")
+    print("Sample of results:")
+    print(daily_full.head())
+
+    return daily_full
+
+
+import plotly.express as px
+
+def plotly_calendar(out_dir):
+    """
+    Interaktivni kalendarski prikaz aktivnosti po danima.
+    Hover: datum + broj pristupa
+    """
+    csv_path = Path(out_dir) / "daily_accesses_debug.csv"
+
+    if not csv_path.exists():
+        print("daily_accesses_debug.csv ne postoji – prvo pokreni caltplott")
+        return
+
+    df = pd.read_csv(csv_path, parse_dates=["access_date"])
+
+    df["week"] = df["access_date"].dt.isocalendar().week
+    df["weekday"] = df["access_date"].dt.weekday
+    df["weekday_name"] = df["access_date"].dt.day_name()
+
+    fig = px.scatter(
+        df,
+        x="week",
+        y="weekday",
+        color="access_count",
+        size="access_count",
+        hover_data={
+            "access_count": True,
+            "week": False,
+            "weekday": False,
+            "access_date": True,     
+            },
+        labels={
+            "week": "Nedelja u godini",
+            "weekday": "Dani u nedelji",
+            "access_count": "Broj pristupa",
+            "access_date": "Datum pristupa",
+        },
+        title="kalendar aktivnosti pristupa fajlovima"
+    )
+
+    fig.update_yaxes(
+        tickvals=[0,1,2,3,4,5,6],
+        ticktext=["Ponedeljak","Utorak","Sreda","Četvrtak","Petak","Subota","Nedelja"],
+        autorange="reversed"
+    )
+
+    fig.show()
+
+
+import plotly.graph_objects as go
+
+import plotly.graph_objects as go
+
+def plot_anomalies_interactive(df, lower_bound, upper_bound, Q1=None, Q2=None, Q3=None,
+                               date_col='access_date', value_col='access_count',
+                               output_file='daily_access_anomalies.html'):
+    fig = go.Figure()
+
+    # Normalni dani
+    fig.add_trace(go.Scatter(
+        x=df[~df['is_anomaly']][date_col],
+        y=df[~df['is_anomaly']][value_col],
+        mode='markers',
+        name='Normalni dani',
+        marker=dict(color='blue'),
+        hovertemplate='Datum: %{x|%Y-%m-%d}<br>Broj pristupa: %{y}<extra></extra>'
+    ))
+
+    # Anomalije
+    fig.add_trace(go.Scatter(
+        x=df[df['is_anomaly']][date_col],
+        y=df[df['is_anomaly']][value_col],
+        mode='markers',
+        name='Anomalije',
+        marker=dict(color='red', size=10, symbol='circle'),
+        hovertemplate='⚠️ Anomalija<br>Datum: %{x|%Y-%m-%d}<br>Broj pristupa: %{y}<extra></extra>'
+    ))
+
+    # IQR granice
+    fig.add_hline(y=lower_bound, line_dash="dash", line_color='green', annotation_text="Donja IQR granica")
+    fig.add_hline(y=upper_bound, line_dash="dash", line_color='green', annotation_text="Gornja IQR granica")
+
+    # Opcionalno: linije za Q1, Q2, Q3
+    if Q1 is not None:
+        fig.add_hline(y=Q1, line_dash="dot", line_color='orange', annotation_text="Q1")
+    if Q2 is not None:
+        fig.add_hline(y=Q2, line_dash="dot", line_color='purple', annotation_text="Q2 (medijana)")
+    if Q3 is not None:
+        fig.add_hline(y=Q3, line_dash="dot", line_color='orange', annotation_text="Q3")
+
+    fig.update_layout(
+        title="Interaktivna detekcija anomalija u broju pristupa fajlovima",
+        xaxis_title="Datum",
+        yaxis_title="Broj pristupa",
+        hovermode="closest"
+    )
+
+    fig.write_html(output_file, auto_open=True)
 
 
 
@@ -603,19 +691,29 @@ def main():
 
     print(f'Metapodaci sačuvani u {args.out_dir}/metadata.csv')
 
-    if args.detect_iqr:
-        anomalies = detect_anomalies_iqr(df)
-        anomalies.to_csv(Path(args.out_dir)/'anomalies.csv', index=False)
-        print(f'Detekovano {len(anomalies)} anomalija. Sačuvano u anomalies.csv')
-
     if args.visualize:
         print("visualize je true")
+
         plot_file_types(df, args.out_dir)
         plot_file_sizes1(df, args.out_dir)
+
         caltplott(args.out_dir)
-        #plot_github_style_calendar(df,args.out_dir)
-        detect_anomalies(df, args.out_dir)
+        plotly_calendar(args.out_dir)
+
+        csv_path = out_dir / "daily_accesses_debug.csv"
+
+        loadedData = pd.read_csv(csv_path)
+        df, Q1, Q2, Q3, lb, ub = detect_anomalies_iqr(loadedData)
+
+        plot_anomalies_interactive(df, lb, ub, Q1, Q2, Q3,
+                           date_col='access_date',
+                           value_col='access_count',
+                           output_file="daily_access_anomalies.html")
+
+
         print(f'Grafički prikazi sačuvani u {args.out_dir}/')
+
+
 
 if __name__ == '__main__':
     main()
